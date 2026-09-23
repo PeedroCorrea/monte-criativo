@@ -7,8 +7,9 @@
   --page: clamp(24px, 5vw, 88px);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 95px; }
-body { margin: 0; background: var(--black); color: var(--paper); font-family: 'Montserrat', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+/* Clip sideways overflow without creating a scroll container around sticky cards. */
+html { scroll-behavior: smooth; scroll-padding-top: 95px; overflow-x: clip; overscroll-behavior-x: none; }
+body { margin: 0; background: var(--black); color: var(--paper); font-family: 'Montserrat', Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; touch-action: pan-y pinch-zoom; }
 figure, h1, h2, p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
