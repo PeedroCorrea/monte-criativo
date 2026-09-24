@@ -3,6 +3,12 @@ import { setupContactGallery } from './portfolio.js';
 import { setupContactForm } from './contact-form.js';
 
 const root = document.documentElement;
+const isPageReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
+if (isPageReload) {
+  history.scrollRestoration = 'manual';
+  history.replaceState(history.state, '', location.pathname + location.search);
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+}
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const sections = ['inicio', 'portfolio', 'sobre', 'servicos', 'projetos', 'redes', 'contato'].map(id => document.getElementById(id));
 const mainLinks = [...document.querySelectorAll('[data-main-nav]')];
@@ -19,18 +25,6 @@ function syncProjectStack() {
       + card.querySelector('.project-heading').getBoundingClientRect().height + 24;
   })));
   projectStack.style.setProperty('--project-peek', `${peek}px`);
-  // Preserve the mobile layout; desktop cards must fit below both headings.
-  if (matchMedia('(max-width: 760px)').matches) {
-    projectStack.classList.remove('project-stack--flow');
-    return;
-  }
-  // Measure the CSS viewport expression independently of the current flow mode.
-  const sizing = document.createElement('div');
-  sizing.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;height:var(--project-height);width:0';
-  projectStack.append(sizing);
-  const cardHeight = sizing.getBoundingClientRect().height;
-  sizing.remove();
-  projectStack.classList.toggle('project-stack--flow', cardHeight < 380);
 }
 if ('ResizeObserver' in window) {
   const projectObserver = new ResizeObserver(syncProjectStack);
@@ -90,7 +84,10 @@ document.addEventListener('click', event => {
 window.addEventListener('hashchange', () => goToSection(location.hash.slice(1), 'instant'));
 window.addEventListener('scroll', requestRender, { passive: true });
 window.addEventListener('resize', requestRender, { passive: true });
-window.addEventListener('pageshow', requestRender);
+window.addEventListener('pageshow', event => {
+  if (isPageReload && !event.persisted) goToSection('inicio', 'instant');
+  requestRender();
+});
 reducedMotion.addEventListener('change', syncGalleries);
 
 if ('IntersectionObserver' in window) {
@@ -130,5 +127,6 @@ document.querySelectorAll('[data-whatsapp]').forEach(link => {
   link.removeAttribute('aria-disabled');
 });
 render();
-if (location.hash) requestAnimationFrame(() => goToSection(location.hash.slice(1), 'instant'));
+if (isPageReload) requestAnimationFrame(() => goToSection('inicio', 'instant'));
+else if (location.hash) requestAnimationFrame(() => goToSection(location.hash.slice(1), 'instant'));
 document.fonts.ready.then(requestRender);
