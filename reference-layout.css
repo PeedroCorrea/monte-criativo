@@ -30,7 +30,7 @@ main > section, .projects { scroll-margin-top: 0; }
 .service p { margin: 0; font-size: clamp(17px, 1.65vw, 31px); line-height: 1.23; letter-spacing: -.025em; }
 .projects-wrap { background: linear-gradient(110deg, #2933ff, #6425fa); }
 .projects { background: #000; border-radius: clamp(48px, 8vw, 155px) clamp(48px, 8vw, 155px) 0 0; padding: clamp(80px, 7.5vw, 144px) clamp(26px, 4.4vw, 84px) clamp(90px, 8vw, 150px); }
-.project-stack { --project-top: clamp(100px, 12svh, 132px); --project-pad: clamp(24px, 3vw, 50px); --project-number-size: clamp(3.5rem, 6svh, 6.5rem); --project-peek: calc(var(--project-pad) + var(--project-number-size) + 16px); --project-height: min(820px, calc(100svh - var(--project-top) - 28px)); display: flex; flex-direction: column; gap: clamp(100px, 24svh, 260px); max-width: 1760px; margin: clamp(70px, 7vw, 135px) auto 0; padding-bottom: clamp(70px, 18svh, 180px); isolation: isolate; }
+.project-stack { --project-top: clamp(100px, 12svh, 132px); --project-pad: clamp(24px, 3vw, 50px); --project-number-size: clamp(3.5rem, 6svh, 6.5rem); --project-peek: calc(var(--project-pad) + var(--project-number-size) + 16px); --project-height: min(820px, calc(100svh - var(--project-top) - 2 * var(--project-peek) - 28px)); display: flex; flex-direction: column; gap: clamp(100px, 24svh, 260px); max-width: 1760px; margin: clamp(70px, 7vw, 135px) auto 0; padding-bottom: clamp(70px, 18svh, 180px); isolation: isolate; }
 /* All cards share the Thayná layout. Only their stacking offsets differ. */
 .project-case { --project-index: 0; position: sticky; top: calc(var(--project-top) + var(--project-index) * var(--project-peek)); z-index: 1; display: grid; grid-template-rows: auto minmax(0, 1fr); flex: none; height: var(--project-height); margin: 0 0 calc((2 - var(--project-index)) * var(--project-peek)); border: 2px solid #eeefea; border-radius: clamp(24px, 3vw, 56px); padding: var(--project-pad); overflow: clip; background: #050505; box-shadow: 0 -8px 28px #0005; }
 .project-case:nth-child(2) { --project-index: 1; z-index: 2; }
@@ -101,6 +101,12 @@ main > section, .projects { scroll-margin-top: 0; }
   .has-reveals .about-art[data-reveal], .has-reveals .about-copy[data-reveal] p { opacity: 1; transform: none; transition: none; }
   .has-reveals .about-art .about-photo, .has-reveals .about-art .about-headline { opacity: 1; transform: none; transition: none; }
 }
+/* When the whole stack cannot fit comfortably, show complete cards in page flow. */
+.project-stack--flow { gap: 40px; padding-bottom: 0; }
+.project-stack--flow .project-case { position: relative; top: auto; height: auto; margin-bottom: 0; }
+.project-stack--flow .project-images, .project-stack--flow .project-side-images { grid-template-rows: auto; }
+.project-stack--flow .project-images img { width: 100%; height: auto; max-height: none; }
+.project-stack--flow .project-side-images { height: auto; }
 /* Short viewports and reduced motion keep every project in the normal page flow. */
 @media (max-height: 520px), (prefers-reduced-motion: reduce) {
   .project-stack { gap: 40px; padding-bottom: 0; }

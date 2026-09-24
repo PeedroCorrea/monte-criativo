@@ -19,6 +19,18 @@ function syncProjectStack() {
       + card.querySelector('.project-heading').getBoundingClientRect().height + 24;
   })));
   projectStack.style.setProperty('--project-peek', `${peek}px`);
+  // Preserve the mobile layout; desktop cards must fit below both headings.
+  if (matchMedia('(max-width: 760px)').matches) {
+    projectStack.classList.remove('project-stack--flow');
+    return;
+  }
+  // Measure the CSS viewport expression independently of the current flow mode.
+  const sizing = document.createElement('div');
+  sizing.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;height:var(--project-height);width:0';
+  projectStack.append(sizing);
+  const cardHeight = sizing.getBoundingClientRect().height;
+  sizing.remove();
+  projectStack.classList.toggle('project-stack--flow', cardHeight < 380);
 }
 if ('ResizeObserver' in window) {
   const projectObserver = new ResizeObserver(syncProjectStack);
