@@ -14,15 +14,17 @@ const sections = ['inicio', 'portfolio', 'sobre', 'servicos', 'projetos', 'redes
 const mainLinks = [...document.querySelectorAll('[data-main-nav]')];
 const portfolio = document.getElementById('portfolio');
 const contact = document.getElementById('contato');
-// Reserve the complete heading, including wrapped text, before the next card.
+// Desktop shows compact numbered tabs; preserve the complete mobile heading.
 const projectStack = document.querySelector('.project-stack');
 const projectCards = [...document.querySelectorAll('.project-case')];
 function syncProjectStack() {
   if (!projectStack || !projectCards.length) return;
+  const mobileStack = matchMedia('(max-width: 760px)').matches;
   const peek = Math.ceil(Math.max(...projectCards.map(card => {
     const style = getComputedStyle(card);
     return parseFloat(style.borderTopWidth) + parseFloat(style.paddingTop)
-      + card.querySelector('.project-heading').getBoundingClientRect().height + 24;
+      + card.querySelector(mobileStack ? '.project-heading' : '.project-number').getBoundingClientRect().height
+      + (mobileStack ? 24 : 8);
   })));
   projectStack.style.setProperty('--project-peek', `${peek}px`);
 }

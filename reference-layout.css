@@ -43,6 +43,13 @@ main > section, .projects { scroll-margin-top: 0; }
 .project-images img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; min-width: 0; min-height: 0; justify-self: center; border-radius: clamp(14px, 2.7vw, 48px); }
 .project-main-image { align-self: center; }
 .project-side-images { display: grid; grid-template-rows: minmax(0, 1.16fr) minmax(0, 1fr); align-items: center; height: 100%; min-height: 0; gap: clamp(14px, 2.5svh, 28px); }
+/* Like assim.jpeg: narrow numbered tabs behind one complete foreground card. */
+@media (min-width: 761px) {
+  .project-stack { --project-number-size: clamp(28px, 3.2svh, 44px); --project-peek: calc(24px + var(--project-number-size)); --project-height: min(820px, calc(100svh - var(--project-top) - 2 * var(--project-peek) - 28px)); }
+  .project-case { padding-top: 14px; }
+  .project-heading h3 { font-size: clamp(20px, 1.6vw, 30px); }
+  .project-heading p { margin-top: 16px; font-size: clamp(14px, 1vw, 18px); }
+}
 .contact { background: #000; font-family: 'Montserrat', Arial, sans-serif; }
 .contact :is(input, button) { font-family: inherit; }
 .contact.gallery-ready { min-height: max(740px, 100svh); }
