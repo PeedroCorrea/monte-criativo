@@ -8,6 +8,25 @@ const sections = ['inicio', 'portfolio', 'sobre', 'servicos', 'projetos', 'redes
 const mainLinks = [...document.querySelectorAll('[data-main-nav]')];
 const portfolio = document.getElementById('portfolio');
 const contact = document.getElementById('contato');
+// Reserve the complete heading, including wrapped text, before the next card.
+const projectStack = document.querySelector('.project-stack');
+const projectCards = [...document.querySelectorAll('.project-case')];
+function syncProjectStack() {
+  if (!projectStack || !projectCards.length) return;
+  const peek = Math.ceil(Math.max(...projectCards.map(card => {
+    const style = getComputedStyle(card);
+    return parseFloat(style.borderTopWidth) + parseFloat(style.paddingTop)
+      + card.querySelector('.project-heading').getBoundingClientRect().height + 24;
+  })));
+  projectStack.style.setProperty('--project-peek', `${peek}px`);
+}
+if ('ResizeObserver' in window) {
+  const projectObserver = new ResizeObserver(syncProjectStack);
+  projectCards.forEach(card => projectObserver.observe(card.querySelector('.project-heading')));
+}
+window.addEventListener('resize', syncProjectStack, { passive: true });
+document.fonts.ready.then(syncProjectStack);
+syncProjectStack();
 setupContactForm(document.getElementById('contact-form'), document.getElementById('contact-feedback'));
 const galleries = [
   { section: portfolio, controller: setupContactGallery(portfolio, { diagonal: true }), visible: false },

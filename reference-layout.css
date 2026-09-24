@@ -111,8 +111,9 @@ main > section, .projects { scroll-margin-top: 0; }
 }
 
 .social { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(40px, 5vw, 96px); min-height: min(100svh, 1080px); padding: 80px clamp(26px, 4.4vw, 84px) 0; overflow: hidden; background: #000; }
-.social-phone { width: min(100%, 680px); align-self: end; justify-self: center; }
-.social-phone img { width: 100%; height: auto; }
+/* Display only the phone area of the supplied 1920 x 1080 composition. */
+.social-phone { position: relative; width: min(100%, 680px); aspect-ratio: 732 / 882; overflow: hidden; align-self: end; justify-self: center; }
+.social-phone img { position: absolute; width: 262.295082%; max-width: none; height: auto; left: -15.846995%; top: -22.44898%; }
 .has-reveals .social-phone[data-reveal] { transform: translateY(110px) rotate(6deg) scale(.92); transform-origin: center bottom; transition: opacity .75s ease, transform 1.2s cubic-bezier(.16, 1, .3, 1); }
 .has-reveals .social-phone.is-revealed { transform: none; }
 .social-copy { padding-bottom: clamp(60px, 7vw, 134px); }
