@@ -103,7 +103,8 @@
 .is-story.on-portfolio .chapter-nav { opacity: .85; }
 @keyframes portfolio-diagonal-drift { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 @media (max-width: 760px) {
-  .portfolio.gallery-ready .portfolio-wall { --art-width: clamp(165px, 29vw, 215px); }
+  .portfolio.gallery-ready .portfolio-wall { --art-gap: 10px; --art-width: clamp(165px, 29vw, 215px); }
+  .portfolio.gallery-ready .portfolio-track { animation-duration: calc(var(--gallery-duration, 50s) * 1.08); animation-delay: calc(var(--gallery-delay, 0s) * 1.08); }
   .portfolio.gallery-ready footer { left: 22px; right: 22px; bottom: 25px; font-size: 8px; }
   .is-story.on-portfolio .chapter-nav { bottom: 76px; }
 }
