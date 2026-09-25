@@ -29,8 +29,8 @@ main > section, .projects { scroll-margin-top: 0; }
 .service h3 { font-size: clamp(30px, 3.9vw, 75px); font-weight: 900; letter-spacing: -.045em; line-height: 1; margin: 0 0 14px; text-transform: uppercase; overflow-wrap: break-word; }
 .service p { margin: 0; font-size: clamp(17px, 1.65vw, 31px); line-height: 1.23; letter-spacing: -.025em; }
 .projects-wrap { background: linear-gradient(110deg, #2933ff, #6425fa); }
-.projects { background: #000; border-radius: clamp(48px, 8vw, 155px) clamp(48px, 8vw, 155px) 0 0; padding: clamp(80px, 7.5vw, 144px) clamp(26px, 4.4vw, 84px) clamp(90px, 8vw, 150px); }
-.project-stack { --project-top: clamp(100px, 12svh, 132px); --project-pad: clamp(24px, 3vw, 50px); --project-number-size: clamp(3.5rem, 6svh, 6.5rem); --project-peek: calc(var(--project-pad) + var(--project-number-size) + 16px); --project-height: min(820px, calc(100svh - var(--project-top) - 28px)); display: flex; flex-direction: column; gap: clamp(100px, 24svh, 260px); max-width: 1760px; margin: clamp(70px, 7vw, 135px) auto 0; padding-bottom: clamp(70px, 18svh, 180px); isolation: isolate; }
+.projects { background: #000; border-radius: clamp(48px, 8vw, 155px) clamp(48px, 8vw, 155px) 0 0; padding: clamp(80px, 7.5vw, 144px) clamp(26px, 4.4vw, 84px) 40px; }
+.project-stack { --project-top: clamp(100px, 12svh, 132px); --project-pad: clamp(24px, 3vw, 50px); --project-number-size: clamp(3.5rem, 6svh, 6.5rem); --project-peek: calc(var(--project-pad) + var(--project-number-size) + 16px); --project-height: min(820px, calc(100svh - var(--project-top) - 28px)); display: flex; flex-direction: column; gap: clamp(100px, 24svh, 260px); max-width: 1760px; margin: clamp(70px, 7vw, 135px) auto 0; padding-bottom: 32px; isolation: isolate; }
 /* All cards share the Thayná layout. Only their stacking offsets differ. */
 .project-case { --project-index: 0; position: sticky; top: calc(var(--project-top) + var(--project-index) * var(--project-peek)); z-index: 1; display: grid; grid-template-rows: auto minmax(0, 1fr); flex: none; height: var(--project-height); margin: 0 0 calc((2 - var(--project-index)) * var(--project-peek)); border: 2px solid #eeefea; border-radius: clamp(24px, 3vw, 56px); padding: var(--project-pad); overflow: clip; background: #050505; box-shadow: 0 -8px 28px #0005; }
 .project-case:nth-child(2) { --project-index: 1; z-index: 2; }
@@ -81,13 +81,13 @@ main > section, .projects { scroll-margin-top: 0; }
   .about { grid-template-columns: 1fr; padding-bottom: 55px; }
   .about-copy { max-width: 530px; margin: 0 auto; padding: 24px 28px 0; text-align: left; font-size: 16px; line-height: 1.35; letter-spacing: -.02em; }
   .section-title { font-size: clamp(45px, 11vw, 82px); letter-spacing: -.06em; }
-  .services, .projects { padding: 70px 24px 80px; border-top-left-radius: 45px; border-top-right-radius: 45px; }
+  .services, .projects { padding: 70px 24px 40px; border-top-left-radius: 45px; border-top-right-radius: 45px; }
   .service-list { margin-top: 55px; }
   .service { grid-template-columns: 55px 1fr; gap: 18px; }
   .service-number { font-size: 49px; }
   .service h3 { font-size: clamp(23px, 5.7vw, 36px); margin-bottom: 14px; }
   .service p { font-size: 15px; line-height: 1.45; }
-  .project-stack { --project-top: 92px; --project-pad: 18px; --project-number-size: 3rem; --project-peek: calc(var(--project-pad) + var(--project-number-size) + 12px); --project-height: min(680px, calc(100svh - var(--project-top) - 24px)); margin-top: 50px; gap: 20svh; padding-bottom: 14svh; }
+  .project-stack { --project-top: 92px; --project-pad: 18px; --project-number-size: 3rem; --project-peek: calc(var(--project-pad) + var(--project-number-size) + 12px); --project-height: min(680px, calc(100svh - var(--project-top) - 24px)); margin-top: 50px; gap: 20svh; padding-bottom: 6svh; }
   .project-case { border-radius: 26px; }
   .project-heading { gap: 14px; margin-bottom: 23px; }
   .project-heading h3 { font-size: clamp(1rem, 3.8vw, 1.625rem); }
@@ -117,10 +117,10 @@ main > section, .projects { scroll-margin-top: 0; }
   .project-side-images { height: auto; }
 }
 
-.social { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(40px, 5vw, 96px); min-height: min(100svh, 1080px); padding: 80px clamp(26px, 4.4vw, 84px) 0; overflow: hidden; background: #000; }
-/* Display only the phone area of the supplied 1920 x 1080 composition. */
+.social { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(40px, 5vw, 96px); min-height: min(100svh, 1080px); padding: 24px clamp(26px, 4.4vw, 84px) 0; overflow: hidden; background: #000; }
+/* Keep the phone within the crop of the updated 1920 x 1080 composition. */
 .social-phone { position: relative; width: min(100%, 680px); aspect-ratio: 732 / 882; overflow: hidden; align-self: end; justify-self: center; }
-.social-phone img { position: absolute; width: 262.295082%; max-width: none; height: auto; left: -15.846995%; top: -22.44898%; }
+.social-phone img { position: absolute; width: 224.3%; max-width: none; height: auto; left: -10.9%; top: -4.5%; }
 .has-reveals .social-phone[data-reveal] { transform: translateY(110px) rotate(6deg) scale(.92); transform-origin: center bottom; transition: opacity .75s ease, transform 1.2s cubic-bezier(.16, 1, .3, 1); }
 .has-reveals .social-phone.is-revealed { transform: none; }
 .social-copy { padding-bottom: clamp(60px, 7vw, 134px); }
@@ -129,7 +129,7 @@ main > section, .projects { scroll-margin-top: 0; }
 .social-instagram { display: inline-flex; align-items: center; justify-content: center; gap: 26px; margin-top: clamp(35px, 4vw, 76px); padding: 17px 35px; border-radius: 50px; background: #102aff; color: #fff; font-size: clamp(17px, 1.7vw, 28px); line-height: 1.2; transition: background .2s, transform .2s; }
 .social-instagram:hover { background: #354bff; transform: translateY(-2px); }
 @media (max-width: 760px) {
-  .social { grid-template-columns: 1fr; gap: 45px; min-height: 0; padding: 75px 24px 0; }
+  .social { grid-template-columns: 1fr; gap: 45px; min-height: 0; padding: 24px 24px 0; }
   .social-copy { order: -1; padding: 0; }
   .social-copy h2 { font-size: clamp(31px, 8.4vw, 60px); }
   .social-instagram { margin-top: 30px; padding: 14px 25px; font-size: 17px; }
