@@ -7,7 +7,7 @@ main > section, .projects { scroll-margin-top: 0; }
 .header-nav { gap: clamp(16px, 2vw, 32px); }
 .portfolio { position: relative; overflow: hidden; padding: 100px var(--page) 80px; }
 .portfolio.gallery-ready { height: max(620px, 100svh); min-height: 0; padding: 0; }
-.portfolio.gallery-ready .portfolio-wall { --art-width: clamp(180px, 22vw, 520px); grid-template-columns: repeat(5, var(--art-width)); }
+.portfolio.gallery-ready .portfolio-wall { --art-width: max(180px, calc(20vw + 5svh)); grid-template-columns: repeat(5, var(--art-width)); }
 .portfolio footer { opacity: .88; }
 .about { display: grid; grid-template-columns: 75% 25%; align-items: center; background: #000; }
 .about-art { position: relative; width: 100%; aspect-ratio: 4 / 3; }
