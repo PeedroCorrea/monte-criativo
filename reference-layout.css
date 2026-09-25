@@ -96,15 +96,6 @@ main > section, .projects { scroll-margin-top: 0; }
   .project-side-images { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr); gap: 12px; }
   .project-images img { border-radius: 15px; }
 }
-@media (max-width: 500px) {
-  .projects { padding-inline: 14px; }
-  .project-stack { --project-pad: 14px; --project-height: auto; }
-  .project-heading { margin-bottom: 16px; }
-  .project-images { grid-template-rows: auto auto; align-content: start; gap: 12px; }
-  .project-main-image { align-self: start; }
-  .project-side-images { grid-template-rows: auto; height: auto; gap: 10px; }
-  .project-images img { width: 100%; height: auto; max-height: none; }
-}
 @media (max-width: 360px) {
   .header { padding-inline: 16px; }
   .header-nav { gap: 11px; }
@@ -138,13 +129,11 @@ main > section, .projects { scroll-margin-top: 0; }
 .social-instagram { display: inline-flex; align-items: center; justify-content: center; gap: 26px; margin-top: clamp(35px, 4vw, 76px); padding: 17px 35px; border-radius: 50px; background: #102aff; color: #fff; font-size: clamp(17px, 1.7vw, 28px); line-height: 1.2; transition: background .2s, transform .2s; }
 .social-instagram:hover { background: #354bff; transform: translateY(-2px); }
 @media (max-width: 760px) {
-  .social { position: relative; grid-template-columns: 1fr; gap: 45px; min-height: 0; padding: 24px 24px 0; }
-  .social::after { content: ''; position: absolute; inset: auto 0 0; z-index: 1; height: 72px; pointer-events: none; background: linear-gradient(to bottom, transparent, #000); }
+  .social { grid-template-columns: 1fr; gap: 45px; min-height: 0; padding: 24px 24px 0; }
   .social-copy { order: -1; padding: 0; }
   .social-copy h2 { font-size: clamp(31px, 8.4vw, 60px); }
   .social-instagram { margin-top: 30px; padding: 14px 25px; font-size: 17px; }
   .social-phone { width: min(85%, 420px); }
-  .contact.gallery-ready .portfolio-wall { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 72px); mask-image: linear-gradient(to bottom, transparent, #000 72px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .social-instagram { transition: none; }
